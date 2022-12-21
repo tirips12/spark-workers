@@ -1,21 +1,21 @@
+
 {
   "canIpForward": false,
   "confidentialInstanceConfig": {
     "enableConfidentialCompute": false
   },
   "deletionProtection": false,
-  "description": "apt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.cloud-372301.internal:7077",
+  "description": "",
   "disks": [
     {
       "autoDelete": true,
       "boot": true,
-      "deviceName": "slave2",
-      "diskEncryptionKey": {},
+      "deviceName": "slave1",
       "initializeParams": {
-        "diskSizeGb": "15",
-        "diskType": "projects/cloud-372301/zones/europe-west1-b/diskTypes/pd-balanced",
+        "diskSizeGb": "10",
+        "diskType": "projects/cloudlab-372303/zones/us-west4-b/diskTypes/pd-balanced",
         "labels": {},
-        "sourceImage": "projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20221206"
+        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221206"
       },
       "mode": "READ_WRITE",
       "type": "PERSISTENT"
@@ -25,13 +25,18 @@
     "enableDisplay": false
   },
   "guestAccelerators": [],
-  "keyRevocationActionType": "NONE",
+  "keyRevocationActionType": "STOP",
   "labels": {},
-  "machineType": "projects/cloud-372301/zones/europe-west1-b/machineTypes/e2-medium",
+  "machineType": "projects/cloudlab-372303/zones/europe-west1-b/machineTypes/e2-medium",
   "metadata": {
-    "items": []
+    "items": [
+      {
+        "key": "startup-script",
+        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.cloudlab-372303.internal:7077"
+      }
+    ]
   },
-  "name": "slave2",
+  "name": "slave1",
   "networkInterfaces": [
     {
       "accessConfigs": [
@@ -41,7 +46,7 @@
         }
       ],
       "stackType": "IPV4_ONLY",
-      "subnetwork": "projects/cloud-372301/regions/europe-west1/subnetworks/default"
+      "subnetwork": "projects/cloudlab-372303/regions/europe-west1/subnetworks/default"
     }
   ],
   "params": {
@@ -58,7 +63,7 @@
   },
   "serviceAccounts": [
     {
-      "email": "83029535358-compute@developer.gserviceaccount.com",
+      "email": "697834093321-compute@developer.gserviceaccount.com",
       "scopes": [
         "https://www.googleapis.com/auth/devstorage.read_only",
         "https://www.googleapis.com/auth/logging.write",
@@ -77,5 +82,5 @@
   "tags": {
     "items": []
   },
-  "zone": "projects/cloud-372301/zones/europe-west1-b"
+  "zone": "projects/cloudlab-372303/zones/europe-west1-b"
 }
